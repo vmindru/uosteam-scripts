@@ -1,0 +1,27 @@
+// color of steal_bag 1403 might be adjusted, use objectinspector
+
+if not @findalias 'steal_bag'
+  headmsg 'Select bag to steal'
+  promptalias  'steal_bag'
+endif
+if not @findalias 'ground_bag'
+  headmsg 'Select bag to steal from'
+  promptalias 'ground_bag'
+endif
+pause 500
+useobject 'ground_bag'
+if findobject 'steal_bag' 1403  'backpack'
+  moveitem 'steal_bag' 'ground_bag'
+endif
+pause 500
+useskill 'Stealing'
+waitfortarget 2000
+target! 'steal_bag'
+if findobject 'steal_bag' 1403 'backpack'
+  moveitem 'steal_bag' 'ground_bag'
+endif
+pause 1000
+moveitemoffset 'ground_bag' 'ground' 1 0 0
+pause 1000
+pause 9000
+
